@@ -20,8 +20,6 @@ namespace Stations.API.Controllers
             _context = dbContext;
         }
 
-        
-
         [HttpGet]
         public IActionResult GetAll()
         {

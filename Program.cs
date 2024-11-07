@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Stations.API.Data;
 using System.Text;
+using Stations.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StationsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StationsConnStr")));
 builder.Services.AddDbContext<StationsAuthDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StationsAuthConnStr")));
+builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 
 builder.Services.AddIdentityCore<IdentityUser>()
     .AddRoles<IdentityRole>()
