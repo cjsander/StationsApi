@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stations.API.Models.DTO;
 using Stations.API.Repositories;
@@ -42,7 +41,7 @@ namespace Stations.API.Controllers
 
                     if (identityResult.Succeeded)
                     {
-                        return Ok("User has been registere! Please login.");
+                        return Ok("User has been registered! Please login.");
                     }
                 }
             }
@@ -57,13 +56,14 @@ namespace Stations.API.Controllers
             var user = await userManager.FindByEmailAsync(loginRequestDto.Username);
             if (user != null)
             {
-               var checkPasswordResult = await userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+                var checkPasswordResult = await userManager.CheckPasswordAsync(user, loginRequestDto.Password);
                 if (checkPasswordResult)
                 {
                     // Get roles for this user
                     var roles = await userManager.GetRolesAsync(user);
 
-                    if (roles != null) {
+                    if (roles != null)
+                    {
 
                         //Create Token
                         var jwtToken = tokenRepository.CreateJwtToken(user, roles.ToList());

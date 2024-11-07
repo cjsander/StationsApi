@@ -8,14 +8,10 @@ namespace Stations.API.Data
 
         public StationsDbContext(DbContextOptions<StationsDbContext> dbContextOptions) : base(dbContextOptions)
         {
-
-
         }
 
         public DbSet<Difficulty> Difficulties { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<PathRoute> PathRouters { get; set; }
-
-
     }
 }
