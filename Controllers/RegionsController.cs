@@ -1,28 +1,23 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stations.API.Data;
-using Stations.API.Migrations;
-using Stations.API.Repositories;
 
 namespace Stations.API.Controllers
 {
-
-
     [Route("api/[controller]")]
     [ApiController]
+
     public class RegionsController : ControllerBase
     {
         private readonly StationsDbContext _context;
 
-        public RegionsController(StationsDbContext dbContext) 
+        public RegionsController(StationsDbContext dbContext)
         {
             _context = dbContext;
         }
 
-        
-
         [HttpGet]
+        [Authorize(Roles = "Writer")]
         public IActionResult GetAll()
         {
             var regions = _context.Regions.ToList();
@@ -30,6 +25,7 @@ namespace Stations.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         [Route("{id:guid}")]
         public IActionResult GetById([FromRoute] Guid id)
         {

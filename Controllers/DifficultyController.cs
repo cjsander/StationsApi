@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stations.API.Data;
 
@@ -16,6 +16,7 @@ namespace Stations.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Writer")]
         public IActionResult GetAll()
         {
             var difficulties = _context.Difficulties.ToList();
@@ -24,6 +25,7 @@ namespace Stations.API.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
+        [Authorize(Roles = "Reader")]
         public IActionResult GetById([FromRoute] Guid id)
         {
             var difficulty = _context.Difficulties.Find(id);
