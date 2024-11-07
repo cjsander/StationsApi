@@ -6,7 +6,7 @@ namespace Stations.API.Data
     public class StationsDbContext : DbContext
     {
 
-        public StationsDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public StationsDbContext(DbContextOptions<StationsDbContext> dbContextOptions) : base(dbContextOptions)
         {
 
 

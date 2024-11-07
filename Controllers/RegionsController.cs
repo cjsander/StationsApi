@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Stations.API.Data;
@@ -7,10 +8,9 @@ using Stations.API.Repositories;
 
 namespace Stations.API.Controllers
 {
-
-
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly StationsDbContext _context;
